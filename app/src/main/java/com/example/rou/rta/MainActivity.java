@@ -13,12 +13,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.model.LatLng;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URLConnection;
+import java.net.URL;
+
+
+import java.net.HttpURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,24 +47,48 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final EditText origin = (EditText) findViewById(R.id.FromTF);
         final EditText end = (EditText) findViewById(R.id.ToTF);
+
+
         setSupportActionBar(toolbar);
+
 
         //Added
         Button myButton = (Button) findViewById(R.id.searchB);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView RouteTV = (TextView) findViewById(R.id.TextViewRoute);
                 startActivity(new Intent(MainActivity.this, Route.class));
 
                 String StartPt = origin.getText().toString();
                 String EndPt = end.getText().toString();
 
+                HttpURLConnection connection =null;
+                BufferedReader reader=null;
 
-                //sendReq();
-                //LatLng StartPt = new LatLng();
-                //LatLng EndPt = new LatLng();
+
+                try {
+
+                    URL url = new URL("http:/127.0.0.1:5000/trip/pointA/pointB/");
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.connect();
+
+                    InputStream stream = connection.getInputStream();
+                    reader = new BufferedReader (new InputStreamReader(stream));
+                    String readSt = reader.toString();
+
+                    RouteTV.setText(readSt);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //RouteTV.setText((CharSequence) reader);
+
+
             }
         });
+
+
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.

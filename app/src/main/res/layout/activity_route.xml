@@ -5,4 +5,53 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.rou.rta.Route" />
+    tools:context="com.example.rou.rta.Route">
+    <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right|top"
+    android:text="Gas"
+    android:padding="0dp"
+    android:layout_marginTop="0dp"
+    android:paddingRight="0dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:text="Food"
+        android:padding="0dp"
+        android:layout_marginTop="0dp"
+        android:paddingRight="30dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:text="Place to see"
+        android:padding="0dp"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="60dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:text="hungry"
+        android:id="@+id/TextViewRoute"
+        android:padding="20dp"
+        android:layout_marginTop="50dp"
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</fragment>
